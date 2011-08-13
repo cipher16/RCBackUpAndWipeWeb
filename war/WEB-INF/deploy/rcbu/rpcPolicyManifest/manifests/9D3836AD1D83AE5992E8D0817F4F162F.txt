@@ -1,0 +1,2 @@
+serviceClass: eu.grigis.gaetan.rcweb.client.services.AuthService
+path: 26CE147D1EB84D64375E8B093ED3CFEC.gwt.rpc

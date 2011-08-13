@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>authServlet</servlet-name>
+    <servlet-class>eu.grigis.gaetan.rcweb.server.AuthServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>jsonServlet</servlet-name>
+    <servlet-class>eu.grigis.gaetan.rcweb.server.TransformDataImpl</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>parserServlet</servlet-name>
+    <servlet-class>eu.grigis.gaetan.rcweb.server.DataParser</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>parserServlet</servlet-name>
+    <url-pattern>/rcbu/parser</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>jsonServlet</servlet-name>
+    <url-pattern>/rcbu/json</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>authServlet</servlet-name>
+    <url-pattern>/rcbu/auth</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>Rcbu.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>
