@@ -30,11 +30,25 @@ public class TransformDataImpl extends RemoteServiceServlet implements Transform
 		User user = userService.getCurrentUser();
 		Gson g = new Gson();
 		
-		String sender = "loupzeur@gmail.com";
+		String sender = "nobody";
 		String recipient = "nobody";
 		
 		if (user != null) {
 			recipient = user.getEmail();
+		}
+		
+		DataTransfer dt = DataTransferQuery.getLastAuthForMail(recipient);
+		if(dt==null)
+		{
+			log.severe("No regId found for : "+sender);
+			return "";
+		}
+		sender = dt.getSender();
+		
+		if(recipient.equals("nobody")|sender.equals("nobody"))
+		{
+			log.severe("Cannot find recipient or sender. Data corruption ?");
+			return "";
 		}
 		
 		log.warning("sendMessage: sender = " + sender);
@@ -44,7 +58,7 @@ public class TransformDataImpl extends RemoteServiceServlet implements Transform
 		String collapseKey = "" + message.hashCode();
 		
 		try {
-			sendMessage(Token.getTokenForMail(sender), collapseKey, DataTransferQuery.getLastAuthForMail(recipient), message);
+			sendMessage(Token.getTokenForMail(sender), collapseKey, dt, message);
 		} catch (Exception e) {
 			log.warning("Got an error "+e.getMessage());
 		}

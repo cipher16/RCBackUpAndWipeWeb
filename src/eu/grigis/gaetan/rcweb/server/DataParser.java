@@ -39,6 +39,7 @@ public class DataParser extends HttpServlet {
 		
 		Gson g = new Gson();
 		DataTransfer dt = g.fromJson(data, DataTransfer.class);
+		log.warning("DataTransfer : "+(dt.getData()==null));
 		dt.setDate(Calendar.getInstance().getTime());
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {

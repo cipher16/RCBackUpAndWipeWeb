@@ -27,6 +27,9 @@ public class DataTransfer implements Serializable {
 	private String mail;
 	
 	@Persistent
+	private String sender;
+	
+	@Persistent
 	private String id;
 	
 	@Persistent
@@ -40,12 +43,14 @@ public class DataTransfer implements Serializable {
 		setMail("");
 		setId("");
 		setType("");
+		setSender("");
 	}
 	
-	public DataTransfer(String m,String i,String t) {
+	public DataTransfer(String m,String s,String i,String t) {
 		setMail(m);
 		setId(i);
 		setType(t);
+		setSender(s);
 	}
 	
 	public void setData(HashMap<String,String> data) {
@@ -86,5 +91,13 @@ public class DataTransfer implements Serializable {
 
 	public Date getDate() {
 		return date;
+	}
+
+	public void setSender(String sender) {
+		this.sender = sender;
+	}
+
+	public String getSender() {
+		return sender;
 	}
 }

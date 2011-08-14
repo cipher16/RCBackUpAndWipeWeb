@@ -24,8 +24,8 @@ public class AuthServiceImpl extends RemoteServiceServlet implements
 		UserService us = UserServiceFactory.getUserService();
 		
 		if(!us.isUserLoggedIn())
-			return new UserInfo("", "", us.createLoginURL(url), false);
-		return new UserInfo(us.getCurrentUser().getNickname(), us.getCurrentUser().getEmail(), us.createLogoutURL(url), true);
+			return new UserInfo("", "", us.createLoginURL(url), false, false);
+		return new UserInfo(us.getCurrentUser().getNickname(), us.getCurrentUser().getEmail(), us.createLogoutURL(url), true,us.isUserAdmin());
 	}
 	
 	@Override

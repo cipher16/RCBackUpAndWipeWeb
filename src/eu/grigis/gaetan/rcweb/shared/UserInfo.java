@@ -8,16 +8,18 @@ public class UserInfo implements Serializable {
 	private String email;
 	private String name;
 	private boolean isLoggedIn;
+	private boolean isAdmin;
 	private static final long serialVersionUID = 1L;
 	public UserInfo() {
 		setUrl("");
 		setEmail("");
 		setName("");
 		setLoggedIn(false);
+		setAdmin(false);
 	}
-	public UserInfo(String n,String e,String u,boolean i)
+	public UserInfo(String n,String e,String u,boolean i,boolean a)
 	{
-		url=u;name=n;email=e;isLoggedIn=i;
+		url=u;name=n;email=e;isLoggedIn=i;isAdmin=a;
 	}
 	
 	public void setUrl(String url) {
@@ -43,5 +45,11 @@ public class UserInfo implements Serializable {
 	}
 	public boolean isLoggedIn() {
 		return isLoggedIn;
+	}
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+	public boolean isAdmin() {
+		return isAdmin;
 	};
 }

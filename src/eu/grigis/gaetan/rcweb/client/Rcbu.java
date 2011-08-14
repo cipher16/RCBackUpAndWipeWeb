@@ -32,6 +32,8 @@ public class Rcbu implements EntryPoint {
 			public void onSuccess(UserInfo user) {
 				if(user.isLoggedIn())
 				{
+					if(user.isAdmin())
+						RootPanel.get("tabbar").add(new Hyperlink("Admin","admin"));
 					RootPanel.get("tabbar").add(new Hyperlink("Phone","phone"));
 					RootPanel.get("auth").getElement().setInnerHTML("<a href='"+user.getUrl()+"'>Deconnexion ("+user.getName()+")</a>");
 				}
@@ -49,11 +51,7 @@ public class Rcbu implements EntryPoint {
 	
 	public void addMenu()
 	{
-		Hyperlink home = new Hyperlink("Home","home");
-		Hyperlink faq = new Hyperlink("FAQ","faq");
-		Hyperlink admin = new Hyperlink("Admin","admin");
-		RootPanel.get("tabbar").add(home);
-		RootPanel.get("tabbar").add(faq);
-		RootPanel.get("tabbar").add(admin);
+		RootPanel.get("tabbar").add(new Hyperlink("Home","home"));
+		RootPanel.get("tabbar").add(new Hyperlink("FAQ","faq"));
 	}
 }
