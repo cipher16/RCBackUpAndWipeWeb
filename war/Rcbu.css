@@ -1,8 +1,11 @@
 /*Palette : http://www.colourlovers.com/palette/444487/Curiosity_Killed*/
 * {
 	font-family: sans-serif;
+	color: #FFF;
 }
-
+button {
+	color: #000;	
+}
 #header > h1, #content > div, #footer > span {
 	color: #FFF;
 	text-align: justify;

@@ -20,56 +20,32 @@ public class PhoneControl extends HorizontalPanel{
 	private FlexTable fxInfo;
 	public PhoneControl() {
 		fxInfo= new FlexTable();
-		Button btnStatus = new Button("Get Status");
-		Button btnLStatus = new Button("Get Last Status");
-		Button btnLastReg = new Button("Get Last Reg");
+		Button btnStatus = new Button("Status");
 		Button btnGeoloc = new Button("Geoloc");
 		Button btnRing = new Button("Ring");
 		VerticalPanel vp = new VerticalPanel();
 		
 		vp.add(btnStatus);
-		vp.add(btnLStatus);
-		vp.add(btnLastReg);
 		vp.add(btnGeoloc);
 		vp.add(btnRing);
 		this.add(vp);
 		this.add(fxInfo);
 		
-		/*Button handler*/
-		
 		//sending message to device through C2DM
 		btnStatus.addClickHandler(new ControlHandler("status"));
 		btnGeoloc.addClickHandler(new ControlHandler("geoloc"));
 		btnRing.addClickHandler(new ControlHandler("ring"));
-		
-		//just getting data through db
-		btnLastReg.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				fxInfo.clear();
-				displayLastRegId();
-			}
-		});
-		btnLStatus.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				fxInfo.clear();
-				displayLastType("status");
-			}
-		});
 	}
 	
 	public void displayLastType(String type)
 	{
 		((TransformDataAsync) GWT.create(TransformData.class)).getLastTypeForCurrentRegUser(type, new AsyncCallback<DataTransfer>() {
-			
 			@Override
 			public void onSuccess(DataTransfer result) {
 				if(result==null)
 					return;
 				HashMap<String,String> map=result.getData();
 				int i=0;
-				fxInfo.setText(0, 0, "HashMap "+(map==null));
 				if(map==null)
 					return;
 				for (String key : map.keySet()) {
@@ -78,25 +54,6 @@ public class PhoneControl extends HorizontalPanel{
 					i++;
 				}
 			}
-			
-			@Override
-			public void onFailure(Throwable caught) {}
-		});
-	}
-	public void displayLastRegId()
-	{
-		((TransformDataAsync) GWT.create(TransformData.class)).getLastTypeForCurrentRegUser("auth", new AsyncCallback<DataTransfer>() {
-			
-			@Override
-			public void onSuccess(DataTransfer result) {
-				if(result==null)
-					return;
-				fxInfo.setText(0, 0, "regId");
-				fxInfo.setText(0, 1, result.getId());
-				fxInfo.setText(1, 0, "mail");
-				fxInfo.setText(1, 1, result.getMail());
-			}
-			
 			@Override
 			public void onFailure(Throwable caught) {}
 		});
@@ -114,7 +71,7 @@ public class PhoneControl extends HorizontalPanel{
 			((TransformDataAsync) GWT.create(TransformData.class)).sendMessage(type, new AsyncCallback<String>() {
 				@Override
 				public void onSuccess(String result) {
-					fxInfo.clear();
+					fxInfo.removeAllRows();
 					displayLastType(type);
 				}
 				@Override

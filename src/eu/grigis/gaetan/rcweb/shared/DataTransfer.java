@@ -20,7 +20,7 @@ public class DataTransfer implements Serializable {
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long key;
 	
-	@Persistent(serialized="true")
+	@Persistent(serialized="true", defaultFetchGroup = "true")
 	private HashMap<String,String> data;
 	
 	@Persistent
@@ -44,6 +44,7 @@ public class DataTransfer implements Serializable {
 		setId("");
 		setType("");
 		setSender("");
+		setData(new HashMap<String, String>());
 	}
 	
 	public DataTransfer(String m,String s,String i,String t) {
@@ -51,6 +52,7 @@ public class DataTransfer implements Serializable {
 		setId(i);
 		setType(t);
 		setSender(s);
+		setData(new HashMap<String, String>());
 	}
 	
 	public void setData(HashMap<String,String> data) {
