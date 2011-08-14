@@ -68,6 +68,8 @@ public class PhoneControl extends HorizontalPanel{
 		
 		@Override
 		public void onClick(ClickEvent event) {
+			fxInfo.removeAllRows();
+			fxInfo.setText(0,0,"Loading data ...");
 			((TransformDataAsync) GWT.create(TransformData.class)).sendMessage(type, new AsyncCallback<String>() {
 				@Override
 				public void onSuccess(String result) {
