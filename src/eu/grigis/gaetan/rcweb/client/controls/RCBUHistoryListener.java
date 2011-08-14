@@ -1,7 +1,5 @@
 package eu.grigis.gaetan.rcweb.client.controls;
 
-import java.util.HashMap;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -18,12 +16,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import eu.grigis.gaetan.rcweb.client.services.AuthService;
 import eu.grigis.gaetan.rcweb.client.services.AuthServiceAsync;
-import eu.grigis.gaetan.rcweb.client.services.TransformData;
-import eu.grigis.gaetan.rcweb.client.services.TransformDataAsync;
 import eu.grigis.gaetan.rcweb.client.ui.Home;
 import eu.grigis.gaetan.rcweb.client.ui.PhoneControl;
-import eu.grigis.gaetan.rcweb.shared.DataTransfer;
-import eu.grigis.gaetan.rcweb.shared.UserInfo;
 
 public class RCBUHistoryListener implements ValueChangeHandler<String> {
 
@@ -37,9 +31,10 @@ public class RCBUHistoryListener implements ValueChangeHandler<String> {
         else if (event.getValue().equals("faq")){
             RootPanel.get("content").add(new HTMLPanel("Here will be the faq ... one day ... may be"));
         }
-        else if(event.getValue().equals("phone"))
+        else if(event.getValue().startsWith("phone."))
         {
-        	RootPanel.get("content").add(new PhoneControl());
+        	if(event.getValue().matches("phone.(status|geoloc|ring)"))
+        		RootPanel.get("content").add(new PhoneControl(event.getValue().replace("phone.", "")));
         }
         else if(event.getValue().equals("admin"))
         {

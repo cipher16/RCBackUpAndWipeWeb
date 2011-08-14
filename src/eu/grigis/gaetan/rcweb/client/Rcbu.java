@@ -2,6 +2,7 @@ package eu.grigis.gaetan.rcweb.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.maps.client.Maps;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -34,7 +35,7 @@ public class Rcbu implements EntryPoint {
 				{
 					if(user.isAdmin())
 						RootPanel.get("tabbar").add(new Hyperlink("Admin","admin"));
-					RootPanel.get("tabbar").add(new Hyperlink("Phone","phone"));
+					RootPanel.get("tabbar").add(new Hyperlink("Phone","phone.status"));
 					RootPanel.get("auth").getElement().setInnerHTML("<a href='"+user.getUrl()+"'>Deconnexion ("+user.getName()+")</a>");
 				}
 				else
