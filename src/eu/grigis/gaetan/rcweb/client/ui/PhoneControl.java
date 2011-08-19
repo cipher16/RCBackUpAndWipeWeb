@@ -13,6 +13,7 @@ import com.google.gwt.maps.client.geom.LatLng;
 import com.google.gwt.maps.client.overlay.Marker;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -82,7 +83,11 @@ public class PhoneControl extends Composite{
 				//display geoloc info
 				if(result.getType().equals("GEOLOC")&&i>0)
 				{
-					Maps.loadMapsApi("ABQIAAAAXpEB7Go1TVzVyQBm4VXr7BT2E6_VxY2Ak13-OcHSQevEFnxe1xRmwlx8Scb6CVGYiwOvPWgNQh_eoA", "2", false, new Runnable() {@Override public void run() {
+					String ApiKey = "ABQIAAAAXpEB7Go1TVzVyQBm4VXr7BT2E6_VxY2Ak13-OcHSQevEFnxe1xRmwlx8Scb6CVGYiwOvPWgNQh_eoA";
+					System.out.println("Proto : "+Window.Location.getProtocol());
+					if(Window.Location.getProtocol().startsWith("https"))
+						ApiKey="ABQIAAAAYXiByvugTLk9egeRM901lxTTqgRoTvkyqtnpNyMv68yzun4bLBRWHuXHxezjMlB74rbct142iIaMIg";
+					Maps.loadMapsApi(ApiKey, "2", false, new Runnable() {@Override public void run() {
 						LatLng lat = LatLng.newInstance(Double.valueOf(map.get("lat")), Double.valueOf(map.get("long")));
 						MapWidget gmap=new MapWidget(lat,15);
 						
