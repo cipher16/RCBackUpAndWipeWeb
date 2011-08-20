@@ -58,7 +58,7 @@ public class TransformDataImpl extends RemoteServiceServlet implements Transform
 		String collapseKey = "" + message.hashCode();
 		
 		try {
-			sendMessage(Token.getTokenForMail(sender), collapseKey, dt, message);
+			sendMessage(Token.getTokenForMail(sender,"C2DM"), collapseKey, dt, message);
 		} catch (Exception e) {
 			log.warning("Got an error "+e.getMessage());
 		}

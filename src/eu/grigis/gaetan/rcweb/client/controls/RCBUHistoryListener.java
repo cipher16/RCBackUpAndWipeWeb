@@ -7,6 +7,7 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
@@ -38,14 +39,19 @@ public class RCBUHistoryListener implements ValueChangeHandler<String> {
         }
         else if(event.getValue().equals("admin"))
         {
-        	final VerticalPanel vp = new VerticalPanel();
+        	final FlexTable fx = new FlexTable();
         	Button btn = new Button("Save Auth");
         	final TextBox tbSender = new TextBox();
         	final PasswordTextBox tbpass = new PasswordTextBox();
-        	vp.add(tbSender);
-        	vp.add(tbpass);
-        	vp.add(btn);
-        	RootPanel.get("content").add(vp);
+        	int row=0;
+        	fx.setText(row++, 0, "To send C2DM notification we need to get a token from the 'sender' account that you configured during the C2DM registration (only the token will be stored in database).");
+        	fx.getFlexCellFormatter().setColSpan(0, 0, 2);
+        	fx.setText(row, 0, "Login du compte sender");
+        	fx.setWidget(row++, 1, tbSender);
+        	fx.setText(row, 0,"Le mot de passe");
+        	fx.setWidget(row++, 1,tbpass);
+        	fx.setWidget(row, 0,btn);
+        	RootPanel.get("content").add(fx);
         	
         	btn.addClickHandler(new ClickHandler() {
 				@Override
@@ -55,7 +61,7 @@ public class RCBUHistoryListener implements ValueChangeHandler<String> {
 						
 						@Override
 						public void onSuccess(String result) {
-							vp.add(new Label("Retrieved token "+result));
+							fx.setWidget(fx.getRowCount(),0,new Label("Retrieved token "+result));
 						}
 						
 						@Override

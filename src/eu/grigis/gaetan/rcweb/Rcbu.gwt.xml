@@ -12,6 +12,7 @@
   <!-- Other module inherits                                      -->
   
   <inherits name='com.google.gwt.maps.GoogleMaps' />
+  <inherits name='com.google.gwt.appengine.channel.Channel' />
   
   <!-- Specify the app entry point class.                         -->
   <entry-point class='eu.grigis.gaetan.rcweb.client.Rcbu'/>

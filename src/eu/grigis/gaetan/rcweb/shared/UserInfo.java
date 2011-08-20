@@ -7,6 +7,7 @@ public class UserInfo implements Serializable {
 	private String url;
 	private String email;
 	private String name;
+	private String tokenChan;
 	private boolean isLoggedIn;
 	private boolean isAdmin;
 	private static final long serialVersionUID = 1L;
@@ -14,12 +15,13 @@ public class UserInfo implements Serializable {
 		setUrl("");
 		setEmail("");
 		setName("");
+		setTokenChan("");
 		setLoggedIn(false);
 		setAdmin(false);
 	}
-	public UserInfo(String n,String e,String u,boolean i,boolean a)
+	public UserInfo(String n,String e,String u,String t,boolean i,boolean a)
 	{
-		url=u;name=n;email=e;isLoggedIn=i;isAdmin=a;
+		url=u;name=n;email=e;isLoggedIn=i;isAdmin=a;tokenChan=t;
 	}
 	
 	public void setUrl(String url) {
@@ -51,5 +53,11 @@ public class UserInfo implements Serializable {
 	}
 	public boolean isAdmin() {
 		return isAdmin;
+	}
+	public void setTokenChan(String tokenChan) {
+		this.tokenChan = tokenChan;
+	}
+	public String getTokenChan() {
+		return tokenChan;
 	};
 }

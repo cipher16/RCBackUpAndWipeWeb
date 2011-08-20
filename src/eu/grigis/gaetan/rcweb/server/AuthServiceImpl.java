@@ -8,6 +8,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.logging.Logger;
 
+import com.google.appengine.api.channel.ChannelServiceFactory;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -24,8 +25,15 @@ public class AuthServiceImpl extends RemoteServiceServlet implements
 		UserService us = UserServiceFactory.getUserService();
 		
 		if(!us.isUserLoggedIn())
-			return new UserInfo("", "", us.createLoginURL(url), false, false);
-		return new UserInfo(us.getCurrentUser().getNickname(), us.getCurrentUser().getEmail(), us.createLogoutURL(url), true,us.isUserAdmin());
+			return new UserInfo("", "", us.createLoginURL(url),"", false, false);
+		//create Channel when user has logged in
+		String token = Token.getTokenForMail(us.getCurrentUser().getEmail(), "CHANNEL");
+		if(token.isEmpty())//get back token for channel
+		{
+			token = ChannelServiceFactory.getChannelService().createChannel(us.getCurrentUser().getEmail());
+			Token.saveTokenForMail(us.getCurrentUser().getEmail(), token, "CHANNEL");
+		}
+		return new UserInfo(us.getCurrentUser().getNickname(), us.getCurrentUser().getEmail(), us.createLogoutURL(url),token, true,us.isUserAdmin());
 	}
 	
 	@Override
@@ -33,7 +41,7 @@ public class AuthServiceImpl extends RemoteServiceServlet implements
     {
 		String authToken = null;
 		try{
-	        authToken = Token.getTokenForMail(sender);
+	        authToken = Token.getTokenForMail(sender,"C2DM");
 	        if (authToken != null) {
 	            log.info("retrieved auth token from db: " + authToken);
 	            return authToken;
@@ -88,7 +96,7 @@ public class AuthServiceImpl extends RemoteServiceServlet implements
             
             if (authToken != null) {
                 log.info("storing auth token: " + authToken);
-                Token.saveTokenForMail(sender, authToken);
+                Token.saveTokenForMail(sender, authToken,"C2DM");
             }
             
             return authToken;

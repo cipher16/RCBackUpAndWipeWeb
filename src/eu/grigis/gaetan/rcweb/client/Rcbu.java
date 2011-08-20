@@ -1,8 +1,12 @@
 package eu.grigis.gaetan.rcweb.client;
 
+import com.google.gwt.appengine.channel.client.Channel;
+import com.google.gwt.appengine.channel.client.ChannelFactory;
+import com.google.gwt.appengine.channel.client.ChannelFactory.ChannelCreatedCallback;
+import com.google.gwt.appengine.channel.client.SocketError;
+import com.google.gwt.appengine.channel.client.SocketListener;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.maps.client.Maps;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -37,6 +41,27 @@ public class Rcbu implements EntryPoint {
 						RootPanel.get("tabbar").add(new Hyperlink("Admin","admin"));
 					RootPanel.get("tabbar").add(new Hyperlink("Phone","phone.status"));
 					RootPanel.get("auth").getElement().setInnerHTML("<a href='"+user.getUrl()+"'>Deconnexion ("+user.getName()+")</a>");
+
+					/*Channel API, used to retrieve real time info*/
+					ChannelFactory.createChannel(user.getTokenChan(), new ChannelCreatedCallback() {
+						  @Override
+						  public void onChannelCreated(Channel channel) {
+						    channel.open(new SocketListener() {
+						      @Override
+						      public void onOpen() {/*Do nothing it's OK*/}
+						      @Override
+						      public void onMessage(String message) {
+						        Window.alert("Received: " + message);
+						      }
+						      @Override
+						      public void onError(SocketError error) {
+						        Window.alert("Error: " + error.getDescription());
+						      }
+						      @Override
+						      public void onClose() {/*Do nothing it's OK*/}
+						    });
+						  }
+						});
 				}
 				else
 				{

@@ -21,6 +21,26 @@
     <servlet-class>eu.grigis.gaetan.rcweb.server.DataParser</servlet-class>
   </servlet>
   
+  <servlet>
+    <servlet-name>channelDisconnectionServlet</servlet-name>
+    <servlet-class>eu.grigis.gaetan.rcweb.server.ChannelPresence</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>channelConnectionServlet</servlet-name>
+    <servlet-class>eu.grigis.gaetan.rcweb.server.ChannelPresence</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>channelConnectionServlet</servlet-name>
+    <url-pattern>/_ah/channel/connected/</url-pattern>
+  </servlet-mapping>
+    
+  <servlet-mapping>
+    <servlet-name>channelDisconnectionServlet</servlet-name>
+    <url-pattern>/_ah/channel/disconnected/</url-pattern>
+  </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>parserServlet</servlet-name>
     <url-pattern>/rcbu/parser</url-pattern>

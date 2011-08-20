@@ -84,7 +84,6 @@ public class PhoneControl extends Composite{
 				if(result.getType().equals("GEOLOC")&&i>0)
 				{
 					String ApiKey = "ABQIAAAAXpEB7Go1TVzVyQBm4VXr7BT2E6_VxY2Ak13-OcHSQevEFnxe1xRmwlx8Scb6CVGYiwOvPWgNQh_eoA";
-					System.out.println("Proto : "+Window.Location.getProtocol());
 					if(Window.Location.getProtocol().startsWith("https"))
 						ApiKey="ABQIAAAAYXiByvugTLk9egeRM901lxTTqgRoTvkyqtnpNyMv68yzun4bLBRWHuXHxezjMlB74rbct142iIaMIg";
 					Maps.loadMapsApi(ApiKey, "2", false, new Runnable() {@Override public void run() {
