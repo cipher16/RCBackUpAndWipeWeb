@@ -22,15 +22,15 @@ public class DataParser extends HttpServlet {
 	private static Logger log = Logger.getLogger("DataParser");
 	private static final long serialVersionUID = 4749016443092546607L;
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		resp.setContentType("text/html");
-		String r = "<html><body><form method='post'><textarea name='data'></textarea><input type='submit' /></form></body></html>";
-		ServletOutputStream out = resp.getOutputStream();
-		out.println(r);
-		return;
-	}
+//	@Override
+//	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+//			throws ServletException, IOException {
+//		resp.setContentType("text/html");
+//		String r = "<html><body><form method='post'><textarea name='data'></textarea><input type='submit' /></form></body></html>";
+//		ServletOutputStream out = resp.getOutputStream();
+//		out.println(r);
+//		return;
+//	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
