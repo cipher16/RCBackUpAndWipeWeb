@@ -91,3 +91,10 @@ body {
 	display: block;
 	padding: 10px;
 }
+dl {
+	margin-left: 20px;	
+}
+dl > dt {
+	font-weight: bolder;
+	margin-top: 20px;
+}

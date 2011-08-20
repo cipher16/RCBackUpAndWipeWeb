@@ -1,0 +1,13 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+	<g:HTMLPanel>
+		<div style="margin-left: 20px;">
+			By using this website and the RCBU android software, you are agree with the terms below :
+			
+			<ul>
+				<li>We are not responsible of the loss of your phone in any case</li>
+				<li>Some other terms will be added ;)</li>
+			</ul>
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder>

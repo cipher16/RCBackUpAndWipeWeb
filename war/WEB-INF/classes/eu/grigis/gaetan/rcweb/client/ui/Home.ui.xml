@@ -6,7 +6,7 @@
 		}
 	</ui:style>
 	<g:HTMLPanel>
-		RCBU is still in developpment<br />
+		RCBU is still in developpment (thus the service can be disabled at any time)<br />
 		RCBU (Remote Control And Backup) for Android is an application that enable you from this website to :
 			<ul>
 				<li>Get your phone's location</li>

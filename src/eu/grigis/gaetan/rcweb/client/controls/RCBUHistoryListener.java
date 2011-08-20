@@ -8,7 +8,6 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -16,8 +15,11 @@ import com.google.gwt.user.client.ui.TextBox;
 
 import eu.grigis.gaetan.rcweb.client.services.AuthService;
 import eu.grigis.gaetan.rcweb.client.services.AuthServiceAsync;
+import eu.grigis.gaetan.rcweb.client.ui.About;
+import eu.grigis.gaetan.rcweb.client.ui.FAQ;
 import eu.grigis.gaetan.rcweb.client.ui.Home;
 import eu.grigis.gaetan.rcweb.client.ui.PhoneControl;
+import eu.grigis.gaetan.rcweb.client.ui.TOS;
 
 public class RCBUHistoryListener implements ValueChangeHandler<String> {
 
@@ -29,7 +31,13 @@ public class RCBUHistoryListener implements ValueChangeHandler<String> {
             RootPanel.get("content").add(new Home());
         }
         else if (event.getValue().equals("faq")){
-            RootPanel.get("content").add(new HTMLPanel("Here will be the faq ... one day ... may be"));
+            RootPanel.get("content").add(new FAQ());
+        }
+        else if (event.getValue().equals("about")){
+            RootPanel.get("content").add(new About());
+        }
+        else if (event.getValue().equals("tos")){
+            RootPanel.get("content").add(new TOS());
         }
         else if(event.getValue().startsWith("phone."))
         {

@@ -84,5 +84,7 @@ public class Rcbu implements EntryPoint {
 	{
 		RootPanel.get("tabbar").add(new Hyperlink("Home","home"));
 		RootPanel.get("tabbar").add(new Hyperlink("FAQ","faq"));
+		RootPanel.get("tabbar").add(new Hyperlink("TOS","tos"));
+		RootPanel.get("tabbar").add(new Hyperlink("About","about"));
 	}
 }
