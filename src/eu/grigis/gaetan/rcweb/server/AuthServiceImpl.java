@@ -27,12 +27,7 @@ public class AuthServiceImpl extends RemoteServiceServlet implements
 		if(!us.isUserLoggedIn())
 			return new UserInfo("", "", us.createLoginURL(url),"", false, false);
 		//create Channel when user has logged in
-		String token = Token.getTokenForMail(us.getCurrentUser().getEmail(), "CHANNEL");
-		if(token.isEmpty())//get back token for channel
-		{
-			token = ChannelServiceFactory.getChannelService().createChannel(us.getCurrentUser().getEmail());
-			Token.saveTokenForMail(us.getCurrentUser().getEmail(), token, "CHANNEL");
-		}
+		String token = ChannelServiceFactory.getChannelService().createChannel(us.getCurrentUser().getEmail());
 		return new UserInfo(us.getCurrentUser().getNickname(), us.getCurrentUser().getEmail(), us.createLogoutURL(url),token, true,us.isUserAdmin());
 	}
 	
@@ -42,7 +37,7 @@ public class AuthServiceImpl extends RemoteServiceServlet implements
 		String authToken = null;
 		try{
 	        authToken = Token.getTokenForMail(sender,"C2DM");
-	        if (authToken != null) {
+	        if (authToken != null && !authToken.isEmpty()) {
 	            log.info("retrieved auth token from db: " + authToken);
 	            return authToken;
 	        }	

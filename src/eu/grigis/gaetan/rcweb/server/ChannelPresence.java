@@ -24,10 +24,10 @@ public class ChannelPresence extends HttpServlet {
 		
 		ChannelService channelService = ChannelServiceFactory.getChannelService();
 		com.google.appengine.api.channel.ChannelPresence presence = channelService.parsePresence(req);
-
-		if(req.getServletPath().equals("/_ah/channel/disconnected/"))
-		{//delete token
-			Token.deleteToken(presence.clientId(), "CHANNEL");
-		}
+//not needed anymore ... may be for other features ... (nb connected peoples, ...)
+//		if(req.getServletPath().equals("/_ah/channel/disconnected/"))
+//		{//delete token
+//			Token.deleteToken(presence.clientId(), "CHANNEL");
+//		}
 	}
 }

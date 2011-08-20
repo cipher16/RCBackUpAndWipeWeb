@@ -3,7 +3,7 @@
 	font-family: sans-serif;
 	color: #FFF;
 }
-button {
+button,input {
 	color: #000;	
 }
 #header > h1, #content > div, #footer > span {
