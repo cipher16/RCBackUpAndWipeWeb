@@ -8,11 +8,9 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.logging.Logger;
 
-import com.google.android.c2dm.server.C2DMessaging;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import com.google.gson.Gson;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import eu.grigis.gaetan.rcweb.shared.DataTransfer;
@@ -28,7 +26,6 @@ public class TransformDataImpl extends RemoteServiceServlet implements Transform
 		
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
-		Gson g = new Gson();
 		
 		String sender = "nobody";
 		String recipient = "nobody";

@@ -13,7 +13,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
 import eu.grigis.gaetan.rcweb.client.services.AuthService;
 import eu.grigis.gaetan.rcweb.client.services.AuthServiceAsync;
@@ -35,7 +34,11 @@ public class RCBUHistoryListener implements ValueChangeHandler<String> {
         else if(event.getValue().startsWith("phone."))
         {
         	if(event.getValue().matches("phone.(status|geoloc|ring)"))
-        		RootPanel.get("content").add(new PhoneControl(event.getValue().replace("phone.", "")));
+        	{
+        		PhoneControl pc = PhoneControl.getInstance();
+        		RootPanel.get("content").add(pc);
+        		pc.displayType(event.getValue().replace("phone.", ""));
+        	}
         }
         else if(event.getValue().equals("admin"))
         {

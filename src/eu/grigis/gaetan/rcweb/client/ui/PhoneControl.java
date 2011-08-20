@@ -33,14 +33,28 @@ public class PhoneControl extends Composite{
 
 	@UiField FlexTable fxInfo;
 	@UiField VerticalPanel menu;
-	public PhoneControl(String type) {
+	private static PhoneControl instance = null;
+	
+	public static PhoneControl getInstance()
+	{
+		if(instance==null)
+			instance=new PhoneControl();
+		return instance;
+	}
+	
+	private PhoneControl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		menu.setStyleName("links-left");
 		menu.add(new Hyperlink("Status","phone.status"));
 		menu.add(new Hyperlink("Geoloc","phone.geoloc"));
 		menu.add(new Hyperlink("Ring","phone.ring"));
-		
+	}
+	
+	public void displayType(String type)
+	{
+		if(!Window.Location.getHash().contains("phone."+type))
+			Window.Location.replace(Window.Location.createUrlBuilder().setHash("phone."+type).buildString());
 		if(type.equals("ring"))
 			sendMessage("ring");
 		displayLastType(type);
@@ -48,6 +62,7 @@ public class PhoneControl extends Composite{
 	
 	public void displayLastType(final String type)
 	{
+		fxInfo.removeAllRows();
 		if(type.equals("ring"))
 		{
 			fxInfo.setText(0, 0, "The phone is ringing now");
@@ -113,9 +128,9 @@ public class PhoneControl extends Composite{
 			@Override
 			public void onSuccess(String result) {
 				if(type.equals("ring"))
-					return;//do nothing when phone is ringing ... no data to display
+					return;
 				fxInfo.removeAllRows();
-				displayLastType(type);
+				fxInfo.setText(0, 0, "Waiting phone's response");
 			}
 			@Override
 			public void onFailure(Throwable caught) {}

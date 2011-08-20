@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import eu.grigis.gaetan.rcweb.client.controls.RCBUHistoryListener;
 import eu.grigis.gaetan.rcweb.client.services.AuthService;
 import eu.grigis.gaetan.rcweb.client.services.AuthServiceAsync;
+import eu.grigis.gaetan.rcweb.client.ui.PhoneControl;
 import eu.grigis.gaetan.rcweb.shared.UserInfo;
 
 public class Rcbu implements EntryPoint {
@@ -51,7 +52,11 @@ public class Rcbu implements EntryPoint {
 						      public void onOpen() {/*Do nothing it's OK*/}
 						      @Override
 						      public void onMessage(String message) {
-						        Window.alert("Received: " + message);
+						    	message=message.toLowerCase().trim();
+						        if(message.matches("^(ring|status|geoloc)$"))
+						        {
+						        	PhoneControl.getInstance().displayType(message);
+						        }
 						      }
 						      @Override
 						      public void onError(SocketError error) {
