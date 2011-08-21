@@ -25,9 +25,12 @@ public interface RCBUConstants extends Constants {
 
 	@DefaultStringValue("Disconnection")
 	String disconnection();
-	
+
 	@DefaultStringValue("Phone")
 	String phone();
+	
+	@DefaultStringValue("Close")
+	String close();
 
 	/*Phone Parts*/
 	
@@ -79,7 +82,14 @@ public interface RCBUConstants extends Constants {
 	@DefaultStringValue("Retrieved token and stored in database ")
 	String adminGotToken();
 	
-	/*Page Parts*/
+	/*Server Parts : TransformData*/
 	
+	@DefaultStringValue("No registered phone found for your account")
+	String noRegisteredPhoneFound();
 	
+	@DefaultStringValue("You were not found in our database")
+	String userNotFound();
+	
+	@DefaultStringValue("We were unable to send the notification")
+	String unableToSendMsg();
 }

@@ -29,6 +29,11 @@ import eu.grigis.gaetan.rcweb.shared.DataTransfer;
 
 public class PhoneControl extends Composite{
 	
+	public enum errorMessage{
+		unableSendMessage,
+		userNotFound,
+		phoneNotFound
+	}
 	private static PhoneControlUiBinder uiBinder = GWT.create(PhoneControlUiBinder.class);
 	interface PhoneControlUiBinder extends UiBinder<Widget, PhoneControl> {}
 
@@ -134,7 +139,15 @@ public class PhoneControl extends Composite{
 				fxInfo.setText(0, 0, Rcbu.constants.waitingPhoneResponse());
 			}
 			@Override
-			public void onFailure(Throwable caught) {}
+			public void onFailure(Throwable caught) {
+				fxInfo.removeAllRows();
+				switch (errorMessage.valueOf(caught.getMessage())) {
+					case phoneNotFound:Rcbu.displayError(Rcbu.constants.noRegisteredPhoneFound());break;
+					case unableSendMessage:Rcbu.displayError(Rcbu.constants.unableToSendMsg());break;
+					case userNotFound:Rcbu.displayError(Rcbu.constants.userNotFound());break;
+					default:break;
+				}
+			}
 		});
 	}
 }

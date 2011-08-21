@@ -12,6 +12,9 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -36,6 +39,20 @@ public class Rcbu implements EntryPoint {
         History.fireCurrentHistoryState();
 	}
 	
+	public static void displayError(String message)
+	{
+		Anchor link = new Anchor(Rcbu.constants.close());
+		RootPanel.get("error").clear();
+		RootPanel.get("error").getElement().setAttribute("style", "display: block;");
+		RootPanel.get("error").add(new HTML(message));
+		RootPanel.get("error").add(link);
+		link.addClickHandler(new ClickHandler() {
+			@Override public void onClick(ClickEvent event) {
+				RootPanel.get("error").clear();
+				RootPanel.get("error").getElement().setAttribute("style", "display: none;");
+			}
+		});
+	}
 	public void addLang()
 	{
 		Image en = new Image("lang_en.png");

@@ -104,3 +104,13 @@ dl > dt {
 	font-weight: bolder;
 	margin-top: 20px;
 }
+#error {
+	background-color:#99173C;
+	border: 1px solid #EFFFCD;
+	padding: 20 20 0 20;
+	color:#FFF;
+	display: none;
+	width: 50%;
+	margin: 0 auto;
+	text-align: center;
+}

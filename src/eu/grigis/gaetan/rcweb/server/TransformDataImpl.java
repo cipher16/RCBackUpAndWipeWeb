@@ -14,7 +14,9 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import eu.grigis.gaetan.rcweb.shared.DataTransfer;
+import eu.grigis.gaetan.rcweb.client.Rcbu;
 import eu.grigis.gaetan.rcweb.client.services.TransformData;
+import eu.grigis.gaetan.rcweb.client.ui.PhoneControl;
 
 public class TransformDataImpl extends RemoteServiceServlet implements TransformData{
 	
@@ -22,7 +24,7 @@ public class TransformDataImpl extends RemoteServiceServlet implements Transform
 	private static Logger log=Logger.getLogger(TransformDataImpl.class.getName());
 	
 	@Override
-	public String sendMessage(String message) {
+	public String sendMessage(String message) throws Exception {
 		
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
@@ -38,14 +40,14 @@ public class TransformDataImpl extends RemoteServiceServlet implements Transform
 		if(dt==null)
 		{
 			log.severe("No regId found for : "+sender);
-			return "";
+			throw new Exception(PhoneControl.errorMessage.phoneNotFound.toString());
 		}
 		sender = dt.getSender();
 		
 		if(recipient.equals("nobody")|sender.equals("nobody"))
 		{
 			log.severe("Cannot find recipient or sender. Data corruption ?");
-			return "";
+			throw new Exception(PhoneControl.errorMessage.userNotFound.toString());
 		}
 		
 		log.warning("sendMessage: sender = " + sender);
@@ -58,6 +60,7 @@ public class TransformDataImpl extends RemoteServiceServlet implements Transform
 			sendMessage(Token.getTokenForMail(sender,"C2DM"), collapseKey, dt, message);
 		} catch (Exception e) {
 			log.warning("Got an error "+e.getMessage());
+			throw new Exception(PhoneControl.errorMessage.unableSendMessage.toString());
 		}
 		return "";
 	}

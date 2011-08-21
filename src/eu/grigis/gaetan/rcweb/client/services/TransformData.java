@@ -7,8 +7,7 @@ import eu.grigis.gaetan.rcweb.shared.DataTransfer;
 
 @RemoteServiceRelativePath("json")
 public interface TransformData extends RemoteService {
-	String sendMessage(String status);
+	String sendMessage(String status) throws Exception;
 	DataTransfer getLastTypeForMail(String mail,String type);
 	DataTransfer getLastTypeForCurrentRegUser(String type);
 }
-

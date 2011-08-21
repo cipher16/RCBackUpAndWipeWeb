@@ -1,7 +1,5 @@
 package eu.grigis.gaetan.rcweb.client.services;
 
-import java.util.List;
-
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import eu.grigis.gaetan.rcweb.shared.DataTransfer;
