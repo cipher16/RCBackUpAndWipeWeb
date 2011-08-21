@@ -1,13 +1,16 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
-<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'
+    ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+    ui:generateLocales="default">
 	<g:HTMLPanel>
-	This application is using several technologies to run this service :
+		<ui:msg>This application is using several technologies to run this service</ui:msg> :
 		<ul>
-			<li><a href="http://code.google.com/intl/fr-FR/appengine/" target="_blank">AppEngine</a> To run the WebSite</li>
-		 	<li><a href="http://www.android.com/" target="_blank">Android</a> : The Operating System used by your phone</li>
-		 	<li><a href="http://code.google.com/intl/fr-FR/android/c2dm/" target="_blank">Cloud 2 Device Messaging (C2DM)</a> : To directly send notification from the website to your phone, without running the software continuously (save battery)</li>
-		 	<li><a href="http://code.google.com/intl/fr-FR/appengine/docs/java/channel/" target="_blank">Channel API</a> : To enable your phone to send data in real time to your browser</li>
-			<li><a href="http://www.icons-land.com/" target="_blank">Icons from icons-land</a> : Not really a technology but needed for licence reasons</li>
+			<li><ui:msg><a href="http://code.google.com/intl/fr-FR/appengine/" target="_blank">AppEngine</a> To run the WebSite</ui:msg></li>
+		 	<li><ui:msg><a href="http://www.android.com/" target="_blank">Android</a> : The Operating System used by your phone</ui:msg></li>
+		 	<li><ui:msg><a href="http://code.google.com/intl/fr-FR/android/c2dm/" target="_blank">Cloud 2 Device Messaging (C2DM)</a> : To directly send notification from the website to your phone, without running the software continuously (save battery)</ui:msg></li>
+		 	<li><ui:msg><a href="http://code.google.com/intl/fr-FR/appengine/docs/java/channel/" target="_blank">Channel API</a> : To enable your phone to send data in real time to your browser</ui:msg></li>
+			<li><ui:msg><a href="http://www.icons-land.com/" target="_blank">Icons from icons-land</a> : Not really a technology but needed for licence reasons</ui:msg></li>
 		</ul>
 		<div style="text-align:center;margin-top: 10px;">
 			<img src="http://code.google.com/appengine/images/appengine-silver-120x30.gif" alt="Powered by Google App Engine" />

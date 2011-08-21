@@ -13,6 +13,7 @@
   
   <inherits name='com.google.gwt.maps.GoogleMaps' />
   <inherits name='com.google.gwt.appengine.channel.Channel' />
+  <inherits name="com.google.gwt.i18n.I18N"/>
   
   <!-- Specify the app entry point class.                         -->
   <entry-point class='eu.grigis.gaetan.rcweb.client.Rcbu'/>
@@ -20,5 +21,5 @@
   <!-- Specify the paths for translatable code                    -->
   <source path='client'/>
   <source path='shared'/>
-
+  <extend-property name="locale" values="fr"/>
 </module>

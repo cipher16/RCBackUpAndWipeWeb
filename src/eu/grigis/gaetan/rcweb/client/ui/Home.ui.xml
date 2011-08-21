@@ -1,11 +1,10 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
-<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder' xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-	<ui:style>
-		.important {
-			font-weight: bold;
-		}
-	</ui:style>
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'
+    ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+    ui:generateLocales="default">
 	<g:HTMLPanel>
+		<ui:msg>
 		RCBU is still in developpment (thus the service can be disabled at any time)<br />
 		RCBU (Remote Control And Backup) for Android is an application that enable you from this website to :
 			<ul>
@@ -15,6 +14,7 @@
 				<li>Backup SMS</li>
 			</ul>
 		
-		You can download the last apk for android <a href="https://raw.github.com/cipher16/RCBackUpAndWipe/master/bin/RCBackupAndWipe.apk" target="_blank">here</a>
+		You can download the last apk for android on the market
+		</ui:msg>
 	</g:HTMLPanel>
 </ui:UiBinder>

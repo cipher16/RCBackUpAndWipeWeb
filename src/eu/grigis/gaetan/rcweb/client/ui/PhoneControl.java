@@ -22,6 +22,7 @@ import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+import eu.grigis.gaetan.rcweb.client.Rcbu;
 import eu.grigis.gaetan.rcweb.client.services.TransformData;
 import eu.grigis.gaetan.rcweb.client.services.TransformDataAsync;
 import eu.grigis.gaetan.rcweb.shared.DataTransfer;
@@ -46,9 +47,9 @@ public class PhoneControl extends Composite{
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		menu.setStyleName("links-left");
-		menu.add(new Hyperlink("Status","phone.status"));
-		menu.add(new Hyperlink("Geoloc","phone.geoloc"));
-		menu.add(new Hyperlink("Ring","phone.ring"));
+		menu.add(new Hyperlink(Rcbu.constants.status(),"phone.status"));
+		menu.add(new Hyperlink(Rcbu.constants.geoloc(),"phone.geoloc"));
+		menu.add(new Hyperlink(Rcbu.constants.ring(),"phone.ring"));
 	}
 	
 	public void displayType(String type)
@@ -65,14 +66,14 @@ public class PhoneControl extends Composite{
 		fxInfo.removeAllRows();
 		if(type.equals("ring"))
 		{
-			fxInfo.setText(0, 0, "The phone is ringing now");
+			fxInfo.setText(0, 0, Rcbu.constants.phoneIsRinging());
 			return;
 		}
-		fxInfo.setText(0, 0, "Loading Data");
+		fxInfo.setText(0, 0, Rcbu.constants.loadingData());
 		((TransformDataAsync) GWT.create(TransformData.class)).getLastTypeForCurrentRegUser(type, new AsyncCallback<DataTransfer>() {
 			@Override
 			public void onSuccess(DataTransfer result) {
-				Button btnRefresh = new Button("Send notification to refresh data");
+				Button btnRefresh = new Button(Rcbu.constants.sendNotifToRefresh());
 				btnRefresh.addClickHandler(new ClickHandler() {
 					@Override public void onClick(ClickEvent event) {
 						sendMessage(type);
@@ -82,7 +83,7 @@ public class PhoneControl extends Composite{
 				fxInfo.getFlexCellFormatter().setColSpan(0, 0, 2);
 				if(result==null)
 				{
-					fxInfo.setText(1, 0, "No data found");
+					fxInfo.setText(1, 0, Rcbu.constants.notDataFound());
 					fxInfo.getFlexCellFormatter().setColSpan(1, 0, 2);
 					return;
 				}
@@ -107,7 +108,7 @@ public class PhoneControl extends Composite{
 						
 						gmap.setStyleName("gmap");
 						gmap.addOverlay(new Marker(lat));
-					    gmap.getInfoWindow().open(lat,new InfoWindowContent("Last known position"));
+					    gmap.getInfoWindow().open(lat,new InfoWindowContent(Rcbu.constants.lastKnownPosition()));
 						gmap.addControl(new LargeMapControl());
 						gmap.setSize("400px", "300px");
 						fxInfo.setWidget(0, 3, gmap);
@@ -123,14 +124,14 @@ public class PhoneControl extends Composite{
 	public void sendMessage(final String type)
 	{
 		fxInfo.removeAllRows();
-		fxInfo.setText(0,0,"Sending notification ...");
+		fxInfo.setText(0,0,Rcbu.constants.sendingNotification());
 		((TransformDataAsync) GWT.create(TransformData.class)).sendMessage(type, new AsyncCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
 				if(type.equals("ring"))
 					return;
 				fxInfo.removeAllRows();
-				fxInfo.setText(0, 0, "Waiting phone's response");
+				fxInfo.setText(0, 0, Rcbu.constants.waitingPhoneResponse());
 			}
 			@Override
 			public void onFailure(Throwable caught) {}

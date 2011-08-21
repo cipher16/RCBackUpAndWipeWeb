@@ -1,24 +1,29 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
-<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'
+    ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+    ui:generateLocales="default">
 	<g:HTMLPanel>
-		Some Frequently Asked Questions (none were really asked ;))
-		<br />
-		Remember that this service is still in active development, so it can be really instable (we are using alpha and beta tech from google, so the service can be stopped anytime).
+		<ui:msg>
+			Some Frequently Asked Questions (none were really asked ;))
+			<br />
+			Remember that this service is still in active development, so it can be really instable (we are using alpha and beta tech from google, so the service can be stopped anytime).
+		</ui:msg>
 		<dl>
-			<dt>Q: Does it polls the server continuously ?</dt>
-			<dd>A: No, thanks to C2DM, it will only send data to the server when asked by refreshing data. So there is no uneeded connection and data fees. </dd>
-			
-			<dt>Q: What kind of data are stored by this service ?</dt>
-			<dd>A: For the moment all stored data can be seen in the phone tab (geoloc and status), and the registration id given by google for the C2DM messaging system</dd>
-			
-			<dt>Q: Can I delete all data that my phone has uploaded ?</dt>
-			<dd>A: Not for the moment, it will be available soon</dd>
-			
-			<dt>Q: What if my phone is lost, and the GPS/the phone doesn't respond ?</dt>
-			<dd>A: I don't know ... I did my best, but if the battery is down, or the phone has been wiped, you can't do anything with this software</dd>
-			
-			<dt>Q: What if I found a bug ?</dt>
-			<dd>A: Please report it <a href="https://github.com/cipher16/RCBackUpAndWipeWeb/issues" target="_blank">here</a></dd>
+			<dt><ui:msg>Q: Does it polls the server continuously ?</ui:msg></dt>
+			<dd><ui:msg>A: No, thanks to C2DM, it will only send data to the server when asked by refreshing data. So there is no uneeded connection and data fees.</ui:msg></dd>
+				
+			<dt><ui:msg>Q: What kind of data are stored by this service ?</ui:msg></dt>
+			<dd><ui:msg>A: For the moment all stored data can be seen in the phone tab (geoloc and status), and the registration id given by google for the C2DM messaging system</ui:msg></dd>
+				
+			<dt><ui:msg>Q: Can I delete all data that my phone has uploaded ?</ui:msg></dt>
+			<dd><ui:msg>A: Not for the moment, it will be available soon</ui:msg></dd>
+				
+			<dt><ui:msg>Q: What if my phone is lost, and the GPS/the phone doesn't respond ?</ui:msg></dt>
+			<dd><ui:msg>A: I don't know ... I did my best, but if the battery is down, or the phone has been wiped, you can't do anything with this software</ui:msg></dd>
+				
+			<dt><ui:msg>Q: What if I found a bug ?</ui:msg></dt>
+			<dd><ui:msg>A: Please report it <a href="https://github.com/cipher16/RCBackUpAndWipeWeb/issues" target="_blank">here</a></ui:msg></dd>
 		</dl>
 	</g:HTMLPanel>
 </ui:UiBinder>
