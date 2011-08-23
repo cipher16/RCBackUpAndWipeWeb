@@ -1,2 +1,0 @@
-serviceClass: eu.grigis.gaetan.rcweb.client.services.TransformData
-path: BBA0FB1C25AAE95037A9611F2DC3DCD3.gwt.rpc

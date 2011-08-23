@@ -39,9 +39,12 @@ public interface RCBUConstants extends Constants {
 	
 	@DefaultStringValue("Geoloc")
 	String geoloc();
-	
+
 	@DefaultStringValue("Ring")
 	String ring();
+	
+	@DefaultStringValue("Lock")
+	String lock();
 
 	@DefaultStringValue("Send notification to refresh data")
 	String sendNotifToRefresh();

@@ -1,8 +1,8 @@
-<!-- Indices written at Sun, 21 Aug 2011 13:29:51 UTC -->
+<!-- Indices written at Tue, 23 Aug 2011 21:05:47 UTC -->
 
 <datastore-indexes>
 
-    <!-- Used 1 time in query history -->
+    <!-- Used 5 times in query history -->
     <datastore-index kind="DataTransfer" ancestor="false" source="auto">
         <property name="mail" direction="asc"/>
         <property name="type" direction="asc"/>

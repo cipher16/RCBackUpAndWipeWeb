@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Hyperlink;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -55,6 +56,7 @@ public class PhoneControl extends Composite{
 		menu.add(new Hyperlink(Rcbu.constants.status(),"phone.status"));
 		menu.add(new Hyperlink(Rcbu.constants.geoloc(),"phone.geoloc"));
 		menu.add(new Hyperlink(Rcbu.constants.ring(),"phone.ring"));
+		menu.add(new Hyperlink(Rcbu.constants.lock(),"phone.lock"));
 	}
 	
 	public void displayType(String type)
@@ -74,6 +76,31 @@ public class PhoneControl extends Composite{
 			fxInfo.setText(0, 0, Rcbu.constants.phoneIsRinging());
 			return;
 		}
+		if(type.equals("lock"))
+		{
+			final TextBox tbPass = new TextBox();
+			final Button btnPass = new Button("Set Password");
+			fxInfo.setText(0,0,"To lock your phone set a password, to unlock it set an empty password");
+			fxInfo.setText(1, 0, "Password");
+			fxInfo.setWidget(1, 1, tbPass);
+			fxInfo.setWidget(2, 0, btnPass);
+			fxInfo.getFlexCellFormatter().setColSpan(0, 0, 2);
+			fxInfo.getFlexCellFormatter().setColSpan(2, 0, 2);
+			
+			btnPass.addClickHandler(new ClickHandler() {
+				@Override
+				public void onClick(ClickEvent event) {
+					if(Window.confirm("Are you sure ??"))
+						sendMessage(type+tbPass.getText());
+				}
+			});
+			return;
+		}
+		/*
+		 * status
+		 * geoloc
+		 * -> get data back 
+		 */
 		fxInfo.setText(0, 0, Rcbu.constants.loadingData());
 		((TransformDataAsync) GWT.create(TransformData.class)).getLastTypeForCurrentRegUser(type, new AsyncCallback<DataTransfer>() {
 			@Override
@@ -135,6 +162,11 @@ public class PhoneControl extends Composite{
 			public void onSuccess(String result) {
 				if(type.equals("ring"))
 					return;
+				if(type.startsWith("lock"))
+				{
+					//TODO: Message about lock successful
+					return;
+				}
 				fxInfo.removeAllRows();
 				fxInfo.setText(0, 0, Rcbu.constants.waitingPhoneResponse());
 			}

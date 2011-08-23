@@ -42,7 +42,7 @@ public class RCBUHistoryListener implements ValueChangeHandler<String> {
         }
         else if(event.getValue().startsWith("phone."))
         {
-        	if(event.getValue().matches("phone.(status|geoloc|ring)"))
+        	if(event.getValue().matches("phone.(status|geoloc|ring|lock)"))
         	{
         		PhoneControl pc = PhoneControl.getInstance();
         		RootPanel.get("content").add(pc);
