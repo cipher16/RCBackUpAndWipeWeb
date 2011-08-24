@@ -66,8 +66,21 @@ public interface RCBUConstants extends Constants {
 
 	@DefaultStringValue("Waiting phone's response")
 	String waitingPhoneResponse();
+
+	@DefaultStringValue("Set Password")
+	String setPassword();
+
+	@DefaultStringValue("Password")
+	String password();
+
+	@DefaultStringValue("Are you sure ??")
+	String areYouSure();
 	
+	@DefaultStringValue("To lock your phone set a password, to unlock it set an empty password")
+	String toLockYourPhone();
 	
+	@DefaultStringValue("Lock has been send to your phone")
+	String lockSentToYourPhone();
 	
 	/*Administration Parts*/
 	@DefaultStringValue("To send C2DM notification we need to get a token from the 'sender' account that you configured during the C2DM registration (only the token will be stored in database).")

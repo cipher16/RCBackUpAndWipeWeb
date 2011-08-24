@@ -79,9 +79,9 @@ public class PhoneControl extends Composite{
 		if(type.equals("lock"))
 		{
 			final TextBox tbPass = new TextBox();
-			final Button btnPass = new Button("Set Password");
-			fxInfo.setText(0,0,"To lock your phone set a password, to unlock it set an empty password");
-			fxInfo.setText(1, 0, "Password");
+			final Button btnPass = new Button(Rcbu.constants.setPassword());
+			fxInfo.setText(0,0,Rcbu.constants.toLockYourPhone());
+			fxInfo.setText(1, 0, Rcbu.constants.password());
 			fxInfo.setWidget(1, 1, tbPass);
 			fxInfo.setWidget(2, 0, btnPass);
 			fxInfo.getFlexCellFormatter().setColSpan(0, 0, 2);
@@ -90,7 +90,7 @@ public class PhoneControl extends Composite{
 			btnPass.addClickHandler(new ClickHandler() {
 				@Override
 				public void onClick(ClickEvent event) {
-					if(Window.confirm("Are you sure ??"))
+					if(Window.confirm(Rcbu.constants.areYouSure()))
 						sendMessage(type+tbPass.getText());
 				}
 			});
@@ -160,14 +160,14 @@ public class PhoneControl extends Composite{
 		((TransformDataAsync) GWT.create(TransformData.class)).sendMessage(type, new AsyncCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
+				fxInfo.removeAllRows();
 				if(type.equals("ring"))
 					return;
 				if(type.startsWith("lock"))
 				{
-					//TODO: Message about lock successful
+					fxInfo.setText(0, 0, Rcbu.constants.lockSentToYourPhone());
 					return;
 				}
-				fxInfo.removeAllRows();
 				fxInfo.setText(0, 0, Rcbu.constants.waitingPhoneResponse());
 			}
 			@Override

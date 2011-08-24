@@ -1,2 +1,4 @@
 # Module rcbu
 # RPC service class, partial path of RPC policy file
+eu.grigis.gaetan.rcweb.client.services.TransformData, D59050DAAD804684BB53DED4ABDFB313.gwt.rpc
+eu.grigis.gaetan.rcweb.client.services.AuthService, C6DDD3331D4C564FDC31C509DDEDA291.gwt.rpc
