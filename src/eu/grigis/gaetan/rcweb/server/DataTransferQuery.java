@@ -25,7 +25,7 @@ public class DataTransferQuery {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 
 		Query query = pm.newQuery("select from " + DataTransfer.class.getName()
-	            + " where mail=='" + mail + "' && type=='"+type.toUpperCase()+"' ORDER BY date desc LIMIT 1");
+	            + " where mail=='" + mail + "' && type=='"+type/*.toUpperCase()*/+"' ORDER BY date desc LIMIT 1");
 		List<DataTransfer> list = (List<DataTransfer>) query.execute();
 		if(list==null||(list!=null&&list.isEmpty()))
 			return null;

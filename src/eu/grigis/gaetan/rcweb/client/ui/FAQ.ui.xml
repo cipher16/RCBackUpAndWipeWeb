@@ -24,6 +24,9 @@
 				
 			<dt><ui:msg>Q: What if I found a bug ?</ui:msg></dt>
 			<dd><ui:msg>A: Please report it <a href="https://github.com/cipher16/RCBackUpAndWipeWeb/issues" target="_blank">here</a></ui:msg></dd>
+							
+			<dt><ui:msg>Q: What if I'm unable to delete the software ?</ui:msg></dt>
+			<dd><ui:msg>A: The software is installed as a 'device administrator', so you must remove the administration rights of the application before being able to remove it. To remove the administrator right of the app : go to Settings, then Location and Security, then Device administrators and deselect RCBU</ui:msg></dd>
 		</dl>
 	</g:HTMLPanel>
 </ui:UiBinder>
