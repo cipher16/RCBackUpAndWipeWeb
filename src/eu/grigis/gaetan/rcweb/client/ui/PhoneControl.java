@@ -129,7 +129,7 @@ public class PhoneControl extends Composite{
 					i++;
 				}
 				//display geoloc info
-				if(result.getType().equals("GEOLOC")&&i>0)
+				if(result.getType().toUpperCase().equals("GEOLOC")&&i>0)
 				{
 					String ApiKey = "ABQIAAAAXpEB7Go1TVzVyQBm4VXr7BT2E6_VxY2Ak13-OcHSQevEFnxe1xRmwlx8Scb6CVGYiwOvPWgNQh_eoA";
 					if(Window.Location.getProtocol().startsWith("https"))
